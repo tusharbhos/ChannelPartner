@@ -2,7 +2,7 @@
 
 import { ArrowRight, Sparkles } from 'lucide-react'
 import NetworkDiagram from '../ui/NetworkDiagram'
-import { motion } from 'framer-motion'
+import { motion, Variants } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 
 interface HeroProps {
@@ -15,7 +15,7 @@ export default function Hero({ onApplyClick }: HeroProps) {
     threshold: 0.1,
   })
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -25,14 +25,14 @@ export default function Hero({ onApplyClick }: HeroProps) {
     },
   }
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
         duration: 0.6,
-        ease: 'easeOut',
+        ease: "easeOut",
       },
     },
   }
@@ -54,9 +54,12 @@ export default function Hero({ onApplyClick }: HeroProps) {
             ref={ref}
             variants={containerVariants}
             initial="hidden"
-            animate={inView ? 'visible' : 'hidden'}
+            animate={inView ? "visible" : "hidden"}
           >
-            <motion.div variants={itemVariants} className="inline-flex items-center gap-2 bg-orange-50 text-orange-600 px-4 py-2 rounded-full text-sm font-medium mb-6 border border-orange-100">
+            <motion.div 
+              variants={itemVariants} 
+              className="inline-flex items-center gap-2 bg-orange-50 text-orange-600 px-4 py-2 rounded-full text-sm font-medium mb-6 border border-orange-100"
+            >
               <Sparkles className="w-4 h-4" />
               Privacy-First Presentation Network
             </motion.div>
