@@ -4,13 +4,25 @@ import { Users, Building, Shield, Check, ArrowRight, Star, Globe, Lock } from 'l
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 
+type ColorType = 'orange' | 'blue' | 'green'
+type ColorProperty = 'bg' | 'light' | 'text' | 'border' | 'hover' | 'gradient'
+
+interface Audience {
+  icon: any
+  title: string
+  tagline: string
+  color: ColorType
+  features: string[]
+  stats: Array<{ value: string; label: string }>
+}
+
 export default function AudienceCards() {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   })
 
-  const audiences = [
+  const audiences: Audience[] = [
     {
       icon: Users,
       title: "Channel Partners",
@@ -67,7 +79,7 @@ export default function AudienceCards() {
     }
   ]
 
-  const getColorClasses = (color: string, type: string) => {
+  const getColorClasses = (color: ColorType, type: ColorProperty): string => {
     const colors = {
       orange: {
         bg: 'bg-orange-50',
@@ -94,7 +106,7 @@ export default function AudienceCards() {
         gradient: 'from-green-500 to-green-600'
       }
     }
-    return colors[color as keyof typeof colors][type]
+    return colors[color][type]
   }
 
   return (
