@@ -66,13 +66,13 @@ export default function Home() {
           muted
           playsInline
           className="absolute w-full h-full object-cover"
-          style={{ filter: 'brightness(0.5)' }}
+          style={{ filter: "brightness(0.5)" }}
         >
           <source src="/background-video.mp4" type="video/mp4" />
           {/* Fallback for browsers that don't support video */}
           <div className="absolute inset-0 bg-gradient-to-br from-blue-900 to-purple-900"></div>
         </video>
-        
+
         {/* Dark overlay for better text readability */}
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
       </div>
@@ -173,7 +173,7 @@ export default function Home() {
                   src={selectedBenefit.image}
                   alt={selectedBenefit.title}
                   className="max-w-full h-auto rounded-lg"
-                  style={{ maxHeight: '80vh', width: 'auto' }}
+                  style={{ maxHeight: "80vh", width: "auto" }}
                 />
               </div>
             </div>
@@ -181,14 +181,14 @@ export default function Home() {
         </div>
       )}
 
-      {/* Video Popup - एकच ठेवा, दुसरा काढून टाका */}
+      {/* PDF Popup */}
       {showVideo && (
         <div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-4">
-          <div className="relative w-full max-w-5xl">
+          <div className="relative w-full max-w-5xl h-[90vh]">
             <button
               onClick={closePopup}
-              className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors z-10"
-              aria-label="Close video popup"
+              className="absolute -top-4 -right-4 text-white hover:text-gray-300 transition-colors z-10"
+              aria-label="Close popup"
             >
               <svg
                 className="w-8 h-8"
@@ -205,16 +205,12 @@ export default function Home() {
               </svg>
             </button>
 
-            <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
-              <iframe
-                className="absolute top-0 left-0 w-full h-full rounded-lg"
-                src="https://www.youtube.com/embed/fqa7s24ayng?si=Dg8djjqVnXS8l5X6&autoplay=1"
-                title="How It Works Video"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe> 
-            </div>
+            {/* PDF Viewer */}
+            <iframe
+              src="/Howchannelpartner.networkworks.pdf"
+              className="w-full h-full rounded-lg bg-white"
+              title="Channel Partner PDF"
+            ></iframe>
           </div>
         </div>
       )}
