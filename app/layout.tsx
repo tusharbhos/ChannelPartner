@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "ConectR Landing Page",
+  title: "ChannelPartner.Network - Connect, Collaborate, and Grow Your Business",
   description: "Responsive landing page with sign up and benefits",
 };
 
