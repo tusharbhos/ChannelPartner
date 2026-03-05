@@ -14,7 +14,7 @@ interface Benefit {
 export default function Home() {
   const router = useRouter();
   const [selectedBenefit, setSelectedBenefit] = useState<Benefit | null>(null);
-  const [showVideo, setShowVideo] = useState(false);
+  const [showPdf, setShowPdf] = useState(false);
 
   const benefits: Benefit[] = [
     {
@@ -49,11 +49,16 @@ export default function Home() {
 
   const closePopup = () => {
     setSelectedBenefit(null);
-    setShowVideo(false);
+    setShowPdf(false);
   };
 
   const handleHowItWorks = () => {
-    setShowVideo(true);
+    // For mobile devices, open PDF directly in new tab
+    if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+      window.open("/Howchannelpartner.networkworks.pdf", "_blank");
+    } else {
+      setShowPdf(true);
+    }
   };
 
   return (
@@ -181,8 +186,8 @@ export default function Home() {
         </div>
       )}
 
-      {/* PDF Popup */}
-      {showVideo && (
+      {/* PDF Popup for Desktop */}
+      {showPdf && (
         <div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-4">
           <div className="relative w-full max-w-5xl h-[90vh]">
             <button
@@ -205,12 +210,29 @@ export default function Home() {
               </svg>
             </button>
 
-            {/* PDF Viewer */}
-            <iframe
-              src="/Howchannelpartner.networkworks.pdf"
-              className="w-full h-full rounded-lg bg-white"
-              title="Channel Partner PDF"
-            ></iframe>
+            {/* PDF Viewer for Desktop */}
+            <object
+              data="/Howchannelpartner.networkworks.pdf"
+              type="application/pdf"
+              className="w-full h-full rounded-lg"
+            >
+              <iframe
+                src="/Howchannelpartner.networkworks.pdf"
+                className="w-full h-full rounded-lg bg-white"
+                title="Channel Partner PDF"
+              >
+                <p>
+                  Your browser doesn't support PDF viewing. Please
+                  <a
+                    href="/Howchannelpartner.networkworks.pdf"
+                    className="text-blue-500 underline ml-1"
+                    target="_blank"
+                  >
+                    download the PDF
+                  </a>
+                </p>
+              </iframe>
+            </object>
           </div>
         </div>
       )}
